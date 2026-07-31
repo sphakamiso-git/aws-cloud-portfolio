@@ -2,19 +2,10 @@ import Certifications from "@/components/Certifications";
 import AboutVideo from "@/components/AboutVideo";
 import CVSection from "@/components/CVSection";
 import Navbar from "@/components/Navbar";
+import { skills } from "@/data/skills";
 
 export default function AboutPage() {
-    const skills = [
-        "AWS",
-        "Linux",
-        "TypeScript",
-        "Next.js",
-        "Python",
-        "Docker",
-        "Terraform",
 
-        "Kubernetes",
-    ];
     return (
         
         <main className="min-h-screen bg-black px-6 py-24 text-white">
