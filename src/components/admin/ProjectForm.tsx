@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import type { ComponentPropsWithoutRef } from "react";
+import type { Project } from "@/types/project";
 
 type FormSubmitHandler = ComponentPropsWithoutRef<"form">["onSubmit"];
 
@@ -13,9 +14,9 @@ export default function ProjectForm() {
     const [featured, setFeatured] = useState(false);
 
     const handleSubmit: FormSubmitHandler = (event) => {
-    event.preventDefault();
+    event?.preventDefault();
 
-        const project = {
+     const project: Project = {
             title,
             description,
             technologies: technologies
@@ -36,7 +37,7 @@ export default function ProjectForm() {
                  htmlFor="title"
                  className="mb-2 block text-sm font-medium text-zinc-300"
                 >
-                    Project Title``
+                    Project Title
                 </label>
 
                 <input
@@ -44,7 +45,7 @@ export default function ProjectForm() {
                     type="text"
                     value={title}
                     onChange={(event) => setTitle(event.target.value)}
-                    placeholder="AWS Montly Cost Explorer"
+                    placeholder="AWS Montly Cost Report" 
                     className="w-full rounded-lg border border-zinc-800 bg-black px-4 py-3 outline-none transition focus:border-emerald-400"
                 />
             </div>
