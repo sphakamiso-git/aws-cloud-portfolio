@@ -5,7 +5,7 @@ import { projects } from "@/data/projects";
 
 export default function Projects () { 
     return (
-        <section id="projects" className="bg-black px-6 py-6 py-24 text-white">
+        <section id="projects" className="bg-black py-6 py-24 text-white">
             <div className="mx-auto max-w-6xl">
                 <div className="mb-12">
                     <p className="font-semibold text-emerald-400"> Featured work</p>
@@ -14,8 +14,8 @@ export default function Projects () {
                         Projects
                     </h2>
 
-                    <p className="mt-4 max-w-2xl text-zinc-400">
-                        A Selection of cloud and software engineering projects focused on automation, security, reporting and modern web development.
+                    <p className="mt-4 max-w-2xl leading-7  text-zinc-400">
+                        A selection of cloud and software engineering projects focused on automation, security, reporting and modern web development.
                     </p>
                 </div>
 

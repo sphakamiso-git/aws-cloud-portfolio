@@ -8,10 +8,10 @@ export default function AboutPage() {
 
     return (
         
-        <main className="min-h-screen bg-black px-6 py-24 text-white">
+        <main className="min-h-screen bg-black px-6 pb-24 pt-32 text-white">
             <Navbar />
             <div className="mx-auto max-w-6xl">
-                <section>
+                <section className="mt-24">
                     <h1 className="text-4xl font-bold md:text-5xl">
                         About Me
                     </h1>
@@ -21,7 +21,7 @@ export default function AboutPage() {
                         automation, security and building reliable systems.</p>
                 </section>
   
-                <section className="mt-20">
+                <section className="mt-24">
                     <h2 className="text-3xl font-bold">
                          My Story
                     </h2>
@@ -34,7 +34,7 @@ export default function AboutPage() {
                     </p>
                 </section>
 
-                <section className="mt-20">
+                <section className="mt-24">
                     <h2 className="text-3xl font-bold">
                         Skills
                     </h2>
