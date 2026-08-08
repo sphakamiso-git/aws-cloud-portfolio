@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 import type { ComponentPropsWithoutRef } from "react";
-import type { Project } from "@/types/project";
+import type { CreateProjectInput } from "@/types/project";
+import { createProject } from "@/services/projectService";
 
 type FormSubmitHandler = ComponentPropsWithoutRef<"form">["onSubmit"];
 
@@ -12,11 +13,17 @@ export default function ProjectForm() {
     const [githubUrl, setGithubUrl] = useState("");
     const [liveUrl, setLiveUrl] = useState("");
     const [featured, setFeatured] = useState(false);
+   
+    const [notification, setNotification] = useState<{
+        type: "success" | "error";
+        message: string;
 
-    const handleSubmit: FormSubmitHandler = (event) => {
+    } | null>(null);
+
+    const handleSubmit: FormSubmitHandler = async (event) => {
     event?.preventDefault();
 
-     const project: Project = {
+     const project: CreateProjectInput = {
             title,
             description,
             technologies: technologies
@@ -28,9 +35,46 @@ export default function ProjectForm() {
             featured,
         };
 
-        console.log(project);
+        // console.log(project);
+        try{
+            const createdProject = await createProject(project);
+
+            console.log("Project created successfully!", createProject);
+            setNotification({
+                type: "success",
+                message: "Project created successfully!"
+            });
+
+            setTitle("");
+            setDescription("");
+            setTechnologies("");
+            setGithubUrl("");
+            setLiveUrl("");
+            setFeatured(false);
+         
+           
+        }catch (error){
+            console.error("Failed to create project", error);
+            setNotification({
+                type: "error",
+                message: "Failed to create project",
+            });
+        }
         };
+        
     return (
+        <>
+            {notification && (
+            <div
+                className={`mb-6 rounded-lg border p-4 ${
+                notification.type === "success"
+                    ? "border-emerald-500 bg-emerald-500/10 text-emerald-400"
+                    : "border-red-500 bg-red-500/10 text-red-400"
+                }`}
+            >
+                {notification.message}
+            </div>
+            )}
         <form onSubmit={handleSubmit} noValidate className="mt-8 space-y-6">
             <div>
                 <label
@@ -141,5 +185,6 @@ export default function ProjectForm() {
             </button>
 
         </form>
+        </>
     );
 }
