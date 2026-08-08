@@ -1,8 +1,10 @@
 import ProjectForm from "@/components/admin/ProjectForm";
+import Navbar from "@/components/Navbar"
 
 export default function AdminPage() {
     return (
         <main className="min-h-screen bg-black px-6 pb-24 pt-32 text-white">
+            <Navbar />
             <div className="mx-auto max-w-6xl">
                 <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-400">
                     Portfolio Admin
