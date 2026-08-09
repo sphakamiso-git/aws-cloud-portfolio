@@ -1,10 +1,10 @@
 import Image from "next/image";
-import Hero from "@/components/Hero";
-import Certifications from "@/components/Certifications" 
-import Navbar from "@/components/Navbar";
-import Projects from "@/components/Projects"
+import Hero from "@/components/sections/Hero";
+import Certifications from "@/components/sections/Certifications" 
+import Navbar from "@/components/layout/Navbar";
+import Projects from "@/components/sections/Projects"
 
-import Footer from "@/components/Footer";
+import Footer from "@/components/layout/Footer";
 
 export default function Home(){
   return(

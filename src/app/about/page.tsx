@@ -1,7 +1,7 @@
-import Certifications from "@/components/Certifications";
+import Certifications from "@/components/sections/Certifications";
 import AboutVideo from "@/components/AboutVideo";
 import CVSection from "@/components/CVSection";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/layout/Navbar";
 import { skills } from "@/data/skills";
 
 export default function AboutPage() {

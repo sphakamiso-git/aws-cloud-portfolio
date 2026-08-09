@@ -1,30 +1,37 @@
 "use client";
-import ProjectCard from './ProjectCard';
-import { projects } from "@/data/projects";
+import ProjectCard from '../ProjectCard';
+
 import { useEffect, useState } from "react";
 import { getProjects } from "@/services/projectService";
 import { Project } from "@/types/project";
+import { useProjects } from "@/hooks/useProjects";
 
-export default function Projects () {
-    const [projects, setProjects] = useState<Project[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
+// export default function Projects () {
+//     const [projects, setProjects] = useState<Project[]>([]);
+//     const [loading, setLoading] = useState(true);
+//     const [error, setError] = useState("");
 
-    useEffect(() => {
-        async function loadProjects() {
-            try {
-                const data = await getProjects();
-                setProjects(data);
-            }catch (error){
-                console.error(error);
-                setError("Could not load projects.");
+//     useEffect(() => {
+//         async function loadProjects() {
+//             try {
+//                 const data = await getProjects();
+//                 setProjects(data);
+//             }catch (error){
+//                 console.error(error);
+//                 setError("Could not load projects.");
 
-            }finally {
-                setLoading(false);
-            }
-        }
-        loadProjects();
-    }, []);
+//             }finally {
+//                 setLoading(false);
+//             }
+//         }
+//         loadProjects();
+//     }, []);
+    export default function Projects () {
+    const {
+        projects,
+        loading, 
+        error,
+    } = useProjects();
 
     return (
         <section id="projects" className="bg-black px-6 py-24 text-white">

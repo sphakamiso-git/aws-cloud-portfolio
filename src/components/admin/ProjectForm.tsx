@@ -3,6 +3,11 @@ import { useState } from "react";
 import type { ComponentPropsWithoutRef } from "react";
 import type { CreateProjectInput } from "@/types/project";
 import { createProject } from "@/services/projectService";
+import Notification from "@/components/ui/Notification";
+import TextInput from "@/components/ui/TextInput";
+import TextArea from "@/components/ui/TextArea";
+import Checkbox from "../ui/Checkbox";
+import Button from "@/components/ui/Button";
 
 type FormSubmitHandler = ComponentPropsWithoutRef<"form">["onSubmit"];
 
@@ -64,125 +69,91 @@ export default function ProjectForm() {
         
     return (
         <>
+
             {notification && (
-            <div
-                className={`mb-6 rounded-lg border p-4 ${
-                notification.type === "success"
-                    ? "border-emerald-500 bg-emerald-500/10 text-emerald-400"
-                    : "border-red-500 bg-red-500/10 text-red-400"
-                }`}
-            >
-                {notification.message}
-            </div>
+                <Notification
+                    type={notification.type}
+                    message={notification.message}
+                />
             )}
         <form onSubmit={handleSubmit} noValidate className="mt-8 space-y-6">
             <div>
-                <label
-                 htmlFor="title"
-                 className="mb-2 block text-sm font-medium text-zinc-300"
-                >
-                    Project Title
-                </label>
 
-                <input
+                <TextInput
                     id="title"
-                    type="text"
+                    label="Project Title"
                     value={title}
-                    onChange={(event) => setTitle(event.target.value)}
-                    placeholder="AWS Montly Cost Report" 
-                    className="w-full rounded-lg border border-zinc-800 bg-black px-4 py-3 outline-none transition focus:border-emerald-400"
+                    placeholder="AWS Monthly Cost Report"
+                    onChange={setTitle}
                 />
+
             </div>
 
             <div>
-                <label
-                    htmlFor="description"
-                    className="mb-2 block text-sm font-medium text-zinc-300"
-                    >
-                        Description
-                    </label>
-                <textarea
-                    id="description"
-                    rows={5}
-                    value={description}
-                    onChange={(event) => setDescription(event.target.value)}
-                    className="w-full rounded-lg border border-zinc-800 bg-black px-4 py-3 outline-none transition focus:border-emerald-400"/>
-
+                    <TextArea
+                        id="description"
+                        label="Description"
+                        value={description}
+                        onChange={setDescription}
+                    />
                 
             </div>
 
             <div>
-                <label
-                    htmlFor="technologies"
-                    className="mb-2 block text-sm font-medium text-zinc-300"
-                    >
-                        Technologies
-                </label>
-                <input
+ 
+
+                <TextInput
                     id="technologies"
-                    type="text"
+                    label="Technologies"
                     value={technologies}
-                    onChange={(event) => setTechnologies(event.target.value)}
-                    placeholder="Lambda, TypeScript, DyanmoDB"
-                    className="w-full rounded-lg border border-zinc-800 bg-black px-4 py-3 outline-none transition focus:border-emerald-400"
+                    placeholder="Lambda, TypeScript, DynamoDB"
+                    onChange={setTechnologies}
                 />
             </div>
 
             <div className="grid gap-6 md:grid-cols-2">
                 <div>
-                    <label
-                        htmlFor="githubUrl"
-                        className="mb-2 block text-sm font-medium text-zinc-300"
-                    >
-                        Github URL
-                    </label>
-                    <input
+ 
+
+                    <TextInput
                         id="githubUrl"
+                        label="Github URL"
                         type="url"
                         value={githubUrl}
-                        onChange={(event) => setGithubUrl(event.target.value)}
                         placeholder="https://github.com/..."
-                        className="w-full rounded-lg border border-zinc-800 bg-black px-4 py-3 outline-none transition focus:border-emerald-400"
+                        onChange={setGithubUrl}
                     />
-                </div>
-            
-            
+                </div>      
 
             <div>
-                <label
-                    htmlFor="liveUrl"
-                    className="mb-2 block text-sm font-medium text-zinc-300"
-                    >
-                        Live Demo URL
-                    </label>
-                <input
+                
+                <TextInput
                     id="liveUrl"
+                    label="Live Demo URL"
                     type="url"
                     value={liveUrl}
-                    onChange={(event) => setLiveUrl(event.target.value)}
                     placeholder="https://..."
-                    className="w-full rounded-lg border border-zinc-800 bg-black px-4 py-3 outline-none transition focus:border-emerald-400"
+                    onChange={setLiveUrl}
                 />
             </div>
          </div>
         <div className="flex items-center gap-3">
-            <input
+
+            <Checkbox
                 id="featured"
-                type="checkbox"
+                label="Feature this project on the homepage"
                 checked={featured}
-                onChange={(event) => setFeatured(event.target.checked)}
-                className="h-4 w-4"
+                onChange={setFeatured}
             />
 
             <label htmlFor="featured" className="text-sm text-zinc-300">
                 Feature this project on the homepage
             </label>
             </div>
-            <button 
-                type="submit"
-                className="rounded-lg bg-emerald-400 px-6 py-3 font-semibold text-black hover:bg-emerald-300">
-                    Save Project
-            </button>
+
+            <Button type="submit">
+                Save Project
+            </Button>
 
         </form>
         </>
