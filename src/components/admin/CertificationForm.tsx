@@ -6,6 +6,7 @@ import type { ComponentPropsWithoutRef } from "react";
 import TextInput from "@/components/ui/TextInput";
 import Button from "@/components/ui/Button";
 import Notification from "@/components/ui/Notification";
+import { createCertification } from "@/services/certificationService";
 
 import type { CreateCertificationInput } from "@/types/certifications";
 
@@ -23,7 +24,7 @@ export default function CertificationForm() {
     message: string;
   } | null>(null);
 
-  const handleSubmit: FormSubmitHandler = (event) => {
+  const handleSubmit: FormSubmitHandler = async (event) => {
     event?.preventDefault();
 
     const certification: CreateCertificationInput = {
@@ -33,12 +34,37 @@ export default function CertificationForm() {
       imageUrl,
     };
 
-    console.log("Certification:", certification);
+    try{
+      const createdCertification = 
+           await createCertification(certification);
 
-    setNotification({
+      console.log(
+          "Certification created successfully!",
+          createdCertification,
+      );
+
+          setNotification({
       type: "success",
       message: "Certification form is working.",
     });
+
+    setName("");
+    setIssuer("");
+    setCredentialUrl("");
+    setImageUrl("");
+    
+    }catch(error) {
+      console.error("Failed to create certification", error);
+
+      setNotification({
+        type:"error",
+        message: "Failed to create certification.",
+      });
+    }
+
+    // console.log("Certification:", certification);
+
+
   };
 
   return (

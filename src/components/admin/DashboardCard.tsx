@@ -23,6 +23,7 @@ export default function DashboardCard({
             <p className="mt-2 text-sm text-zinc-500">
                 {description}
             </p>
+
         </div>
     );
 }
