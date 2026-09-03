@@ -27,3 +27,21 @@ export async function createCertification(
 
     return response.json();
 }
+
+export async function getCertification(): Promise<Certification[]> {
+    if (!API_URL) {
+        throw new Error("NEXT_PUBLIC_API_URL is not configured");
+    }
+
+    const response = await fetch(`${API_URL}/certifications`);
+
+    if (!response.ok) {
+        const errorBody = await response.text();
+
+        throw new Error(
+            `Failed to get certifications: ${response.status} ${errorBody}`,
+        );
+    }
+
+    return response.json();
+}

@@ -74,7 +74,7 @@ export async function handler(
         certificationId: crypto.randomUUID(),
         name: request.name,
         issuer: request.issuer,
-        credentialURL: request.credentialUrl,
+        credentialUrl: request.credentialUrl,
         imageUrl: request.imageUrl,
         createdAt: now,
         updatedAt: now, 

@@ -32,7 +32,7 @@ import { useProjects } from "@/hooks/useProjects";
         loading, 
         error,
     } = useProjects();
-
+    console.log("Projects:", projects);
     return (
         <section id="projects" className="bg-black px-6 py-24 text-white">
             <div className="mx-auto max-w-6xl">

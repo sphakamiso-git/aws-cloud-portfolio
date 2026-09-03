@@ -9,22 +9,26 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.1117.0",
-    "@aws-sdk/lib-dynamodb": "^3.1117.0",
+    "@aws-sdk/client-dynamodb": "^3.1124.0",
+    "@aws-sdk/lib-dynamodb": "^3.1124.0",
     "next": "16.2.12",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/aws-lambda": "^8.10.162",
-    "@types/node": "^26.3.0",
+    "@types/aws-lambda": "^8.10.163",
+    "@types/node": "^26.4.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "esbuild": "^0.28.2",
     "eslint": "^9",
     "eslint-config-next": "16.2.12",
     "tailwindcss": "^4",
-    "typescript": "^7.0.2"
-  }
+    "typescript": "6"
+  },
+  "main": "index.js",
+  "repository": "https://github.com/sphakamiso-git/aws-cloud-portfolio.git",
+  "author": "Sphakamiso Ngobese <sparngobese@gmail.com>",
+  "license": "MIT"
 }
