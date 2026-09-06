@@ -6,6 +6,8 @@ import TextInput from "@/components/ui/TextInput";
 import Button from "@/components/ui/Button";
 import Select from "@/components/ui/Select";
 import type { CreateSkillInput } from "@/types/skills";
+import { createSkill } from "@/services/skillService";
+import Notification from "@/components/ui/Notification";
 
 type FormSubmitHandler = ComponentPropsWithoutRef<"form">["onSubmit"];
 
@@ -27,25 +29,61 @@ export default function SkillForm(){
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
 
-    const handleSubmit: FormSubmitHandler = (event) => {
-        event.preventDefault();
+    const[message, setMessage] = useState("");
+    const [notificationType, setNotificationType] = useState<"success" | "error">("success");
 
-        // console.log({
-        //     name,
-        //     description,
-        //     category,
-        // });
-        const skill : CreateSkillInput = {
-            name, 
+    // const handleSubmit: FormSubmitHandler = (event) => {
+    //     event.preventDefault();
+
+    //     // console.log({
+    //     //     name,
+    //     //     description,
+    //     //     category,
+    //     // });
+    //     const skill : CreateSkillInput = {
+    //         name, 
+    //         description,
+    //         category,
+    //     };
+    //     console.log(skill);
+    // };
+    const handleSubmit: FormSubmitHandler = async (event) => {
+        
+        event?.preventDefault();
+
+        const skill: CreateSkillInput = {
+            name,
             description,
             category,
         };
-        console.log(skill);
+
+        try{
+            await createSkill(skill);
+            
+            setNotificationType("success");
+            setMessage("Skill added successfully.");
+
+            setName("");
+            setDescription("");
+            setCategory("");
+
+        }catch (error){
+            // console.log("Failed to create skill:", error);
+            setNotificationType("error");
+
+            setMessage(
+                error instanceof Error
+                ? error.message
+                : "Failed to add skill",
+            );
+        }
     };
     
 
     return (
+       
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+             {message && (<Notification type={notificationType} message={message}/>)}
             <TextInput
                 id="name"
                 label="Skill name"
@@ -73,9 +111,9 @@ export default function SkillForm(){
 
             />
 
-            <button type="submit">
+            <Button type="submit">
                 Add
-            </button>
+            </Button>
         </form>
     );
 }
