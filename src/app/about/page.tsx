@@ -2,7 +2,8 @@ import Certifications from "@/components/sections/Certifications";
 import AboutVideo from "@/components/AboutVideo";
 import CVSection from "@/components/CVSection";
 import Navbar from "@/components/layout/Navbar";
-import { skills } from "@/data/skills";
+//import { skills } from "@/data/skills";
+import Skills from "@/components/sections/Skills";
 
 export default function AboutPage() {
 
@@ -19,6 +20,7 @@ export default function AboutPage() {
                     <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-400">
                         I&apos;m a cloud and infrastructure engineer focused on AWS,
                         automation, security and building reliable systems.</p>
+                    <Skills />
                 </section>
   
                 <section className="mt-24">
@@ -34,19 +36,6 @@ export default function AboutPage() {
                     </p>
                 </section>
 
-                <section className="mt-24">
-                    <h2 className="text-3xl font-bold">
-                        Skills
-                    </h2>
-
-                    <div className="mt-8 flex flex-wrap gap-3">
-                        {skills.map((skill) => (
-                            <span key={skill} className="rounded-full border border-zinc-800 bg-zinc-950 px-4 py-2 text-zinc-300">
-                                {skill}
-                            </span>
-                        ))}
-                    </div>
-                </section>
                 <Certifications />
                 <AboutVideo />
                 <CVSection />
